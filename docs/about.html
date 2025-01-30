@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <!-- レスポンシブ対応 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>会社情報 - AIBizone</title>
     
@@ -40,6 +41,8 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            /* ▼ ロゴ部分のテキストを折り返さない場合に指定 */
+            **white-space: nowrap;**
         }
         header img {
             height: 40px;
@@ -52,6 +55,8 @@
         nav {
             display: flex;
             gap: 20px;
+            /* ▼ リンクを1行に収めるため折り返しを防ぐ */
+            **flex-wrap: nowrap;**
         }
         nav a {
             color: #ffffff;
@@ -60,6 +65,8 @@
             position: relative;
             padding: 5px;
             font-family: 'Shippori Mincho', serif;
+            /* ▼ リンク文字の折り返しを防ぐ */
+            **white-space: nowrap;**
         }
         nav a::after {
             content: "";
