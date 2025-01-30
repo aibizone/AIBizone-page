@@ -6,12 +6,12 @@
   <!-- Google Search Console のメタタグ -->
   <meta name="google-site-verification" content="google5428bdffcd69c66e" />
 
-  <!-- ▼ ポイント：viewportを固定幅に設定（例:1200px） -->
+  <!-- ▼ 横幅を固定化 -->
   <meta name="viewport" content="width=1200, user-scalable=yes">
 
   <title>AIBizone - Fixed Layout</title>
-  
-  <!-- 日本語対応のスタイリッシュなフォント（Shippori Mincho + Noto Sans JP） -->
+
+  <!-- 日本語対応のスタイリッシュなフォント -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link 
@@ -30,10 +30,8 @@
       background-color: #f8fafc;
       color: #333;
       line-height: 1.5;
-      /* デバイス幅に影響されず、常に幅1200px相当として描画 */
+      /* 常に幅1200px相当で表示 */
       min-width: 1200px;
-      /* もし横スクロールを完全に防ぎたいなら overflow-x: hidden; を使うが
-         その場合、スマホで画面が切れてしまいスクロールできなくなる可能性がある */
     }
 
     /****************************************************************
@@ -46,7 +44,6 @@
       justify-content: space-between;
       align-items: center;
       padding: 10px 20px;
-      /* position: sticky; top: 0; は継続して使ってもOK */
       position: sticky;
       top: 0;
       z-index: 999;
@@ -100,15 +97,12 @@
       padding: 60px 20px;
       background: linear-gradient(135deg, #4caf50 0%, #2a7d3c 100%);
       color: #ffffff;
-      /* 1200pxレイアウトに合わせるなら、max-widthを設定してもOK */
     }
     .hero h1 {
       font-size: 2.5rem;
       margin-bottom: 20px;
       font-family: 'Shippori Mincho', serif;
     }
-    /* PCレイアウトを維持するなら white-space: nowrap; は不要 
-       好みで折り返しをするかどうか決定可能 */
     .hero p {
       font-size: 1.1rem;
       margin: 0 auto 30px auto;
@@ -158,6 +152,9 @@
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 2s ease, transform 2s ease;
+      /* 折り返し防止 */
+      white-space: nowrap;
+      /* 黒い輪郭線 (text-shadow) */
       text-shadow: 
         -1px -1px 0 #000,
          1px -1px 0 #000,
@@ -194,7 +191,6 @@
      * サービスカード
      ****************************************************************/
     .service-container {
-      /* PCレイアウトをそのまま使うなら、max-widthなどで中央寄せ */
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -243,8 +239,6 @@
     .service-card:hover::before {
       width: 100%;
     }
-
-    /* 追加コンテンツ */
     .extra-content {
       overflow: hidden;
       max-height: 0;
@@ -308,14 +302,6 @@
     footer a:hover {
       text-decoration: underline;
     }
-
-    /****************************************************************
-     * レスポンシブ対応を一切入れない
-     *  → PCとまったく同じレイアウトを維持
-     *  → スマホは自動的に縮小して表示
-     ****************************************************************/
-    /* ここに @media screen and (max-width: 768px) の記述は一切しない */
-    
   </style>
 </head>
 <body>
@@ -342,6 +328,7 @@
   <div class="image-section">
     <img src="assets/images/hero-image.jpg" alt="農村の風景">
     <div class="image-overlay">
+      <!-- 🔽 常に1行表示するために white-space: nowrap; を指定 -->
       <p>AIで新しい未来を創造したい。</p>
       <p>その気持ちを後押しする為、全力でサポートします。</p>
     </div>
@@ -443,7 +430,6 @@
         });
       });
 
-      // 画面のどこかをクリックすると折りたたむ仕組み（任意）
       document.addEventListener('click', (e) => {
         if (!e.target.closest('.service-container')) {
           serviceCards.forEach(card => {
