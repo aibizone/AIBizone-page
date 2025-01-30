@@ -41,8 +41,8 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            /* ▼ ロゴ部分のテキストを折り返さない場合に指定 */
-            **white-space: nowrap;**
+            /* ▼ ロゴとテキストが折り返されないよう指定 */
+            white-space: nowrap;
         }
         header img {
             height: 40px;
@@ -55,8 +55,8 @@
         nav {
             display: flex;
             gap: 20px;
-            /* ▼ リンクを1行に収めるため折り返しを防ぐ */
-            **flex-wrap: nowrap;**
+            /* ▼ リンクを1行に収めるため折り返し防止 */
+            flex-wrap: nowrap;
         }
         nav a {
             color: #ffffff;
@@ -65,8 +65,8 @@
             position: relative;
             padding: 5px;
             font-family: 'Shippori Mincho', serif;
-            /* ▼ リンク文字の折り返しを防ぐ */
-            **white-space: nowrap;**
+            /* ▼ 文字列が折り返されないよう指定 */
+            white-space: nowrap;
         }
         nav a::after {
             content: "";
@@ -116,6 +116,10 @@
         .sns-links a:hover {
             background-color: #ffcc00;
             color: #212529;
+        }
+        /* ▼ フッター内の「会社情報」リンクを折り返さないように */
+        footer p a {
+            white-space: nowrap;
         }
         footer p {
             margin: 5px 0;
