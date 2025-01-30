@@ -46,6 +46,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      white-space: nowrap; /* ロゴテキストが折り返されないようにする場合 */
     }
     header img {
       height: 40px;
@@ -59,8 +60,11 @@
     nav {
       display: flex;
       gap: 20px;
+      /* ▼ リンクを1行に収めたい場合は nowrap を指定 */
+      flex-wrap: nowrap;
     }
     nav a {
+      white-space: nowrap; /* ▼ 文字の折り返しを防止 */
       color: #ffffff;
       text-decoration: none;
       font-weight: 700;
@@ -220,6 +224,7 @@
       footer p {
         font-size: 0.9rem;
       }
+      /* ヘッダーの各要素もサイズが合わない場合は調整する */
     }
   </style>
 </head>
