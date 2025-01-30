@@ -23,11 +23,11 @@
       background-color: #f9f9f9;
       color: #333;
       line-height: 1.5;
-      /* ▼ 万一でも横スクロールが出ないようにする（必要に応じて） */
-      /* overflow-x: hidden; */
     }
 
-    /* ヘッダー */
+    /****************************************************************
+     * ヘッダー
+     ****************************************************************/
     header {
       background-color: #212529;
       color: #ffffff;
@@ -43,7 +43,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      white-space: nowrap; /* ロゴ画像とロゴ文字が折り返されないように */
+      white-space: nowrap; /* ロゴ部分が折り返されないように */
     }
     header img {
       height: 40px;
@@ -56,8 +56,8 @@
     }
     nav {
       display: flex;
-      gap: 20px;          /* リンク同士の余白 */
-      flex-wrap: nowrap;  /* 折り返さない */
+      gap: 20px;
+      flex-wrap: nowrap;  /* リンクを1行に収める */
     }
     nav a {
       color: #ffffff;
@@ -66,7 +66,7 @@
       position: relative;
       padding: 5px;
       font-family: 'Shippori Mincho', serif;
-      white-space: nowrap; /* ボタン文字列が折り返されないように */
+      white-space: nowrap; /* リンク文字列が折り返されないように */
     }
     nav a::after {
       content: "";
@@ -84,7 +84,9 @@
       width: 100%;
     }
 
-    /* メイン部分のスタイル */
+    /****************************************************************
+     * メイン部分
+     ****************************************************************/
     main {
       padding: 20px;
       max-width: 800px;
@@ -95,7 +97,9 @@
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
-    /* フッター */
+    /****************************************************************
+     * フッター
+     ****************************************************************/
     footer {
       background-color: #212529;
       color: #fff;
@@ -103,19 +107,20 @@
       padding: 20px;
       margin-top: 20px;
     }
-    .sns-links {
+    /* 自己紹介ページと同じ .footer-sns-links クラス名に変更 */
+    .footer-sns-links {
       margin-bottom: 10px;
       display: flex;
       justify-content: center;
       gap: 10px;
-      flex-wrap: wrap; /* 小さい画面では折り返しOK */
+      flex-wrap: wrap;
     }
-    .sns-links a {
+    .footer-sns-links a {
       color: #ffcc00;
       text-decoration: none;
       font-weight: bold;
       display: block;
-      min-width: 120px;  /* リンクをある程度の幅に固定 */
+      min-width: 100px; /* 自己紹介ページでの指定: 100px */
       text-align: center;
       font-size: 14px;
       line-height: 1.5;
@@ -123,10 +128,8 @@
       border-radius: 4px;
       padding: 5px;
       transition: background-color 0.3s, color 0.3s;
-      /* ▼ 必要ならここにも white-space: nowrap; で折り返し禁止にできるが、
-         画面幅が狭いと横スクロールが出るため、あえて指定しない */
     }
-    .sns-links a:hover {
+    .footer-sns-links a:hover {
       background-color: #ffcc00;
       color: #212529;
     }
@@ -137,51 +140,33 @@
       color: #ffcc00;
       text-decoration: none;
       font-weight: bold;
-      /* ▼ 会社情報のリンクが折り返されないように指定 */
+      /* ▼ 「会社情報」が折り返されないように */
       white-space: nowrap;
     }
     footer a:hover {
       text-decoration: underline;
     }
 
-    /***********************************************
+    /****************************************************************
      * メディアクエリ
-     * 画面幅が狭いときにフォントサイズや余白を調整
-     ***********************************************/
+     ****************************************************************/
     @media (max-width: 600px) {
       .logo-container span {
         font-size: 1.2rem; /* ロゴ文字を少し縮小 */
       }
       nav {
-        gap: 10px;         /* ナビゲーションの余白を少なくする */
+        gap: 10px;
       }
       nav a {
-        font-size: 0.9rem; /* ヘッダーリンク文字を縮小 */
+        font-size: 0.9rem;
         padding: 4px;
       }
-      .sns-links a {
-        font-size: 13px;   /* フッターSNSリンクも少し小さめに */
-        min-width: 90px;   /* 幅を縮める */
+      .footer-sns-links a {
+        font-size: 13px;
+        min-width: 90px;  /* モバイル時に幅を少し狭める */
         padding: 4px;
       }
     }
-
-    /* さらに狭い場合の対応例（任意）
-    @media (max-width: 400px) {
-      .logo-container span {
-        font-size: 1rem;
-      }
-      nav a {
-        font-size: 0.8rem;
-        padding: 3px;
-      }
-      .sns-links a {
-        font-size: 12px;
-        min-width: 80px;
-        padding: 3px;
-      }
-    }
-    */
   </style>
 </head>
 <body>
@@ -207,9 +192,7 @@
       </div>
       <div style="margin: 20px 0; text-align: center;">
         <p><strong>所在地:</strong> 埼玉県狭山市</p>
-        <p><strong>お問い合わせ先:</strong>
-          <a href="mailto:aibizone.yoshikawa@gmail.com">aibizone.yoshikawa@gmail.com</a>
-        </p>
+        <p><strong>お問い合わせ先:</strong> <a href="mailto:aibizone.yoshikawa@gmail.com">aibizone.yoshikawa@gmail.com</a></p>
       </div>
       <img src="assets/images/AIBizone決定版.png" alt="AIBizoneロゴ" 
            style="display: block; margin: 20px auto; width: 150px; height: auto;">
@@ -218,7 +201,8 @@
 
   <!-- フッター -->
   <footer>
-    <div class="sns-links">
+    <!-- ▼ クラス名を「.footer-sns-links」に変更 -->
+    <div class="footer-sns-links">
       <a href="https://fb.com/aibizone.yoshikawa/" target="_blank" rel="noopener">Facebook</a>
       <a href="https://x.com/aibizone" target="_blank" rel="noopener">X（Twitter）</a>
       <a href="https://www.instagram.com/aibizone" target="_blank" rel="noopener">Instagram</a>
@@ -226,10 +210,7 @@
       <a href="https://bsky.app/profile/aibizone.bsky.social" target="_blank" rel="noopener">Bluesky</a>
       <a href="https://line.me/S/shop/sticker/author/5090519" target="_blank" rel="noopener">LINEスタンプ販売中</a>
     </div>
-    <p>
-      &copy; 2025 AIBizone. All rights reserved. | 
-      <a href="about.html">会社情報</a>
-    </p>
+    <p>&copy; 2025 AIBizone. All rights reserved. | <a href="about.html">会社情報</a></p>
   </footer>
 </body>
 </html>
