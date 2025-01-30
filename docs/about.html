@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <!-- レスポンシブ対応 -->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  
   <title>会社情報 - AIBizone</title>
 
   <!-- 日本語対応のスタイリッシュなフォント -->
@@ -15,14 +16,16 @@
   >
 
   <style>
-    /* 全体設定 */
+    /****************************************************************
+     * 全体設定
+     ****************************************************************/
     html, body {
       margin: 0;
       padding: 0;
       font-family: 'Noto Sans JP', sans-serif;
-      background-color: #f9f9f9;
+      background-color: #f8fafc;
       color: #333;
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
     /****************************************************************
@@ -43,7 +46,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      white-space: nowrap; /* ロゴ部分が折り返されないように */
+      white-space: nowrap; /* ロゴテキストが折り返されないようにする */
     }
     header img {
       height: 40px;
@@ -57,16 +60,16 @@
     nav {
       display: flex;
       gap: 20px;
-      flex-wrap: nowrap;  /* リンクを1行に収める */
+      flex-wrap: nowrap; /* リンクを1行に収めるため折り返し防止 */
     }
     nav a {
+      white-space: nowrap; /* 文字の折り返し防止 */
       color: #ffffff;
       text-decoration: none;
       font-weight: 700;
       position: relative;
       padding: 5px;
       font-family: 'Shippori Mincho', serif;
-      white-space: nowrap; /* リンク文字列が折り返されないように */
     }
     nav a::after {
       content: "";
@@ -85,20 +88,31 @@
     }
 
     /****************************************************************
-     * メイン部分
+     * メイン（会社情報）
      ****************************************************************/
     main {
-      padding: 20px;
       max-width: 800px;
-      margin: 0 auto;
+      margin: 20px auto;
+      padding: 20px;
       background-color: #fff;
       border: 1px solid #ddd;
       border-radius: 8px;
       box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      line-height: 1.8;
+    }
+    main h1 {
+      text-align: center; 
+      color: #4caf50; 
+      margin-bottom: 15px;
+      font-family: 'Shippori Mincho', serif;
+    }
+    main p {
+      margin-bottom: 15px;
+      color: #555;
     }
 
     /****************************************************************
-     * フッター
+     * フッター（自己紹介ページと同一にする）
      ****************************************************************/
     footer {
       background-color: #212529;
@@ -107,7 +121,6 @@
       padding: 20px;
       margin-top: 20px;
     }
-    /* 自己紹介ページと同じ .footer-sns-links クラス名に変更 */
     .footer-sns-links {
       margin-bottom: 10px;
       display: flex;
@@ -120,7 +133,7 @@
       text-decoration: none;
       font-weight: bold;
       display: block;
-      min-width: 100px; /* 自己紹介ページでの指定: 100px */
+      min-width: 100px;
       text-align: center;
       font-size: 14px;
       line-height: 1.5;
@@ -140,32 +153,32 @@
       color: #ffcc00;
       text-decoration: none;
       font-weight: bold;
-      /* ▼ 「会社情報」が折り返されないように */
-      white-space: nowrap;
     }
     footer a:hover {
       text-decoration: underline;
     }
 
     /****************************************************************
-     * メディアクエリ
+     * メディアクエリ（必要に応じて調整）
      ****************************************************************/
     @media (max-width: 600px) {
-      .logo-container span {
-        font-size: 1.2rem; /* ロゴ文字を少し縮小 */
-      }
       nav {
         gap: 10px;
       }
-      nav a {
+      main {
+        margin: 10px;
+        padding: 10px;
+      }
+      main h1 {
+        font-size: 1.2rem;
+      }
+      main p {
+        font-size: 0.95rem;
+      }
+      footer p {
         font-size: 0.9rem;
-        padding: 4px;
       }
-      .footer-sns-links a {
-        font-size: 13px;
-        min-width: 90px;  /* モバイル時に幅を少し狭める */
-        padding: 4px;
-      }
+      /* ヘッダーやフッターの各要素もサイズが合わない場合は適宜調整可能 */
     }
   </style>
 </head>
@@ -184,31 +197,37 @@
 
   <!-- メイン部分 -->
   <main>
-    <section>
-      <h1 style="text-align: center; color: #4caf50;">会社情報</h1>
-      <p style="text-align: center; font-size: 1.2em;">AIBizoneは、生成AIを活用した業務効率化や新たな価値創造をサポートします。</p>
-      <div style="margin: 20px 0; text-align: center;">
-        <p><strong>会社名:</strong> AIBizone</p>
-      </div>
-      <div style="margin: 20px 0; text-align: center;">
-        <p><strong>所在地:</strong> 埼玉県狭山市</p>
-        <p><strong>お問い合わせ先:</strong> <a href="mailto:aibizone.yoshikawa@gmail.com">aibizone.yoshikawa@gmail.com</a></p>
-      </div>
-      <img src="assets/images/AIBizone決定版.png" alt="AIBizoneロゴ" 
-           style="display: block; margin: 20px auto; width: 150px; height: auto;">
-    </section>
+    <h1>会社情報</h1>
+    <p>AIBizoneは、生成AIを活用した業務効率化や新たな価値創造をサポートします。</p>
+    
+    <div style="margin: 20px 0; text-align: center;">
+      <p><strong>会社名:</strong> AIBizone</p>
+    </div>
+
+    <div style="margin: 20px 0; text-align: center;">
+      <p><strong>所在地:</strong> 埼玉県狭山市</p>
+      <p>
+        <strong>お問い合わせ先:</strong> 
+        <a href="mailto:aibizone.yoshikawa@gmail.com">aibizone.yoshikawa@gmail.com</a>
+      </p>
+    </div>
+
+    <img 
+      src="assets/images/AIBizone決定版.png" 
+      alt="AIBizoneロゴ" 
+      style="display: block; margin: 20px auto; width: 150px; height: auto;"
+    >
   </main>
 
   <!-- フッター -->
   <footer>
-    <!-- ▼ クラス名を「.footer-sns-links」に変更 -->
     <div class="footer-sns-links">
       <a href="https://fb.com/aibizone.yoshikawa/" target="_blank" rel="noopener">Facebook</a>
       <a href="https://x.com/aibizone" target="_blank" rel="noopener">X（Twitter）</a>
       <a href="https://www.instagram.com/aibizone" target="_blank" rel="noopener">Instagram</a>
       <a href="https://ameblo.jp/aibizone/entrylist.html" target="_blank" rel="noopener">Amebaブログ</a>
       <a href="https://bsky.app/profile/aibizone.bsky.social" target="_blank" rel="noopener">Bluesky</a>
-      <a href="https://line.me/S/shop/sticker/author/5090519" target="_blank" rel="noopener">LINEスタンプ販売中</a>
+      <a href="https://line.me/S/shop/sticker/author/5090519" target="_blank" rel="noopener">Lineスタンプ</a>
     </div>
     <p>&copy; 2025 AIBizone. All rights reserved. | <a href="about.html">会社情報</a></p>
   </footer>
