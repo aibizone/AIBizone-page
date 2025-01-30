@@ -3,13 +3,15 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <!-- 🔽 Google Search Console のメタタグ -->
+  <!-- Google Search Console のメタタグ -->
   <meta name="google-site-verification" content="google5428bdffcd69c66e" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AIBizone - GitHub Pages</title>
+  <!-- ▼ ポイント：viewportを固定幅に設定（例:1200px） -->
+  <meta name="viewport" content="width=1200, user-scalable=yes">
+
+  <title>AIBizone - Fixed Layout</title>
   
-  <!-- 日本語対応のスタイリッシュなフォント例：Shippori Mincho + Noto Sans JP -->
+  <!-- 日本語対応のスタイリッシュなフォント（Shippori Mincho + Noto Sans JP） -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link 
@@ -18,9 +20,9 @@
   >
 
   <style>
-    /* =========================================================
-       全体設定
-    ========================================================= */
+    /****************************************************************
+     * 全体設定
+     ****************************************************************/
     html, body {
       margin: 0;
       padding: 0;
@@ -28,13 +30,15 @@
       background-color: #f8fafc;
       color: #333;
       line-height: 1.5;
-      /* 横スクロールを防止するため */
-      overflow-x: hidden;
+      /* デバイス幅に影響されず、常に幅1200px相当として描画 */
+      min-width: 1200px;
+      /* もし横スクロールを完全に防ぎたいなら overflow-x: hidden; を使うが
+         その場合、スマホで画面が切れてしまいスクロールできなくなる可能性がある */
     }
 
-    /* =========================================================
-       ヘッダー
-    ========================================================= */
+    /****************************************************************
+     * ヘッダー
+     ****************************************************************/
     header {
       background-color: #212529;
       color: #ffffff;
@@ -42,6 +46,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 10px 20px;
+      /* position: sticky; top: 0; は継続して使ってもOK */
       position: sticky;
       top: 0;
       z-index: 999;
@@ -87,25 +92,26 @@
       width: 100%;
     }
 
-    /* =========================================================
-       ヒーローセクション
-    ========================================================= */
+    /****************************************************************
+     * ヒーローセクション
+     ****************************************************************/
     .hero {
       text-align: center;
       padding: 60px 20px;
       background: linear-gradient(135deg, #4caf50 0%, #2a7d3c 100%);
       color: #ffffff;
+      /* 1200pxレイアウトに合わせるなら、max-widthを設定してもOK */
     }
     .hero h1 {
       font-size: 2.5rem;
       margin-bottom: 20px;
       font-family: 'Shippori Mincho', serif;
     }
+    /* PCレイアウトを維持するなら white-space: nowrap; は不要 
+       好みで折り返しをするかどうか決定可能 */
     .hero p {
-      /* PCでは1行表示を維持しつつ、モバイルでは縮小表示で対処 */
-      white-space: nowrap;
+      font-size: 1.1rem;
       margin: 0 auto 30px auto;
-      font-size: 1.1rem; /* PC用ベースサイズ */
     }
     .hero a {
       display: inline-block;
@@ -123,9 +129,9 @@
       color: #212529;
     }
 
-    /* =========================================================
-       画像セクション
-    ========================================================= */
+    /****************************************************************
+     * 画像セクション
+     ****************************************************************/
     .image-section {
       position: relative;
       margin: 0;
@@ -146,14 +152,12 @@
       color: #ffffff;
     }
     .image-overlay p {
-      /* PCで1行表示。モバイルで縮小 */
-      white-space: nowrap;
+      font-size: 2.0rem;
+      font-family: 'Shippori Mincho', serif;
+      margin: 0.5em 0;
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 2s ease, transform 2s ease;
-      font-family: 'Shippori Mincho', serif;
-      margin: 0.5em 0;
-      font-size: 2.0rem;
       text-shadow: 
         -1px -1px 0 #000,
          1px -1px 0 #000,
@@ -168,9 +172,9 @@
       transition-delay: 2.0s;
     }
 
-    /* =========================================================
-       業務内容タイトル
-    ========================================================= */
+    /****************************************************************
+     * 業務内容タイトル
+     ****************************************************************/
     .section-title {
       text-align: center;
       margin: 40px auto 20px;
@@ -186,10 +190,11 @@
       background-color: rgba(76, 175, 80, 0.1);
     }
 
-    /* =========================================================
-       サービスカード
-    ========================================================= */
+    /****************************************************************
+     * サービスカード
+     ****************************************************************/
     .service-container {
+      /* PCレイアウトをそのまま使うなら、max-widthなどで中央寄せ */
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -239,7 +244,7 @@
       width: 100%;
     }
 
-    /* 追加コンテンツ（アコーディオン部分） */
+    /* 追加コンテンツ */
     .extra-content {
       overflow: hidden;
       max-height: 0;
@@ -257,9 +262,9 @@
       max-height: 1500px;
     }
 
-    /* =========================================================
-       フッター
-    ========================================================= */
+    /****************************************************************
+     * フッター
+     ****************************************************************/
     footer {
       background-color: #212529;
       color: #fff;
@@ -294,7 +299,6 @@
     }
     footer p {
       margin: 5px 0;
-      /* 1行表示したい場合は、ここにwhite-spaceを指定してもOK */
     }
     footer a {
       color: #ffcc00;
@@ -305,35 +309,17 @@
       text-decoration: underline;
     }
 
-    /* =========================================================
-       レスポンシブ対応 
-       モバイルでは文字サイズを自動縮小し、折り返しを回避
-    ========================================================= */
-    @media screen and (max-width: 768px) {
-      .hero h1 {
-        font-size: 2rem;
-      }
-      /* hero p は nowrap 維持 -> 文字サイズを可変にして縮小 */
-      .hero p {
-        font-size: clamp(0.9rem, 5vw, 1.1rem);
-        white-space: nowrap; /* 折り返しさせない */
-      }
-      /* 画像上テキストも縮小 */
-      .image-overlay p {
-        font-size: clamp(1rem, 6vw, 2rem);
-        white-space: nowrap;
-      }
-      /* サービスカード幅 */
-      .service-card {
-        width: 100%;
-        max-width: 500px;
-      }
-      /* フッターのテキストなども必要に応じて可変にしたい場合は同様にclampを使用 */
-    }
+    /****************************************************************
+     * レスポンシブ対応を一切入れない
+     *  → PCとまったく同じレイアウトを維持
+     *  → スマホは自動的に縮小して表示
+     ****************************************************************/
+    /* ここに @media screen and (max-width: 768px) の記述は一切しない */
+    
   </style>
 </head>
-
 <body>
+
   <!-- ヘッダー -->
   <header>
     <div class="logo-container">
@@ -418,9 +404,7 @@
     <p>&copy; 2025 AIBizone. All rights reserved. | <a href="about.html">会社情報</a></p>
   </footer>
 
-  <!-- ================================
-       スクリプト
-  ================================ -->
+  <!-- スクリプト -->
   <script>
     // 画像上テキストのフェードイン
     document.addEventListener("DOMContentLoaded", () => {
@@ -448,7 +432,6 @@
       const sectionTitle = document.querySelector('.section-title');
       let isExpanded = false;
 
-      // セクションタイトルクリック処理
       sectionTitle.addEventListener('click', (e) => {
         e.stopPropagation();
         isExpanded = !isExpanded;
@@ -460,7 +443,7 @@
         });
       });
 
-      // ドキュメント全体クリックで折りたたむ処理
+      // 画面のどこかをクリックすると折りたたむ仕組み（任意）
       document.addEventListener('click', (e) => {
         if (!e.target.closest('.service-container')) {
           serviceCards.forEach(card => {
