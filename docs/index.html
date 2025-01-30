@@ -6,11 +6,11 @@
   <!-- Google Search Console のメタタグ -->
   <meta name="google-site-verification" content="google5428bdffcd69c66e" />
 
-  <!-- ▼ 横幅を固定化 -->
-  <meta name="viewport" content="width=1200, user-scalable=yes">
+  <!-- ▼ デフォルトはPC版のviewportに設定 -->
+  <meta name="viewport" content="width=1200, user-scalable=yes" id="viewport-meta">
 
-  <title>AIBizone - Fixed Layout</title>
-
+  <title>AIBizone - PC/スマホ切り替え付き</title>
+  
   <!-- 日本語対応のスタイリッシュなフォント -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,8 +30,29 @@
       background-color: #f8fafc;
       color: #333;
       line-height: 1.5;
-      /* 常に幅1200px相当で表示 */
+      /* PC版の固定レイアウトを維持するため幅1200pxを確保 */
       min-width: 1200px;
+    }
+
+    /* PC/スマホ切り替えボタン */
+    .toggle-container {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      z-index: 10000; /* ヘッダーより前面に表示 */
+    }
+    .toggle-button {
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-family: 'Shippori Mincho', serif;
+    }
+    .toggle-button:hover {
+      background-color: #45a049;
     }
 
     /****************************************************************
@@ -152,9 +173,8 @@
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 2s ease, transform 2s ease;
-      /* 折り返し防止 */
+      /* 折り返さない設定 */
       white-space: nowrap;
-      /* 黒い輪郭線 (text-shadow) */
       text-shadow: 
         -1px -1px 0 #000,
          1px -1px 0 #000,
@@ -302,9 +322,19 @@
     footer a:hover {
       text-decoration: underline;
     }
+
+    /* -----------------------------------------------
+       NOTE: レスポンシブ用のmedia queryは一切無し
+       PC幅をそのまま表示する固定レイアウト
+       ----------------------------------------------- */
   </style>
 </head>
 <body>
+
+  <!-- PC/スマホ切り替えボタン（固定表示） -->
+  <div class="toggle-container">
+    <button class="toggle-button" onclick="toggleView()">スマホ表示に切り替え</button>
+  </div>
 
   <!-- ヘッダー -->
   <header>
@@ -328,7 +358,6 @@
   <div class="image-section">
     <img src="assets/images/hero-image.jpg" alt="農村の風景">
     <div class="image-overlay">
-      <!-- 🔽 常に1行表示するために white-space: nowrap; を指定 -->
       <p>AIで新しい未来を創造したい。</p>
       <p>その気持ちを後押しする為、全力でサポートします。</p>
     </div>
@@ -391,8 +420,27 @@
     <p>&copy; 2025 AIBizone. All rights reserved. | <a href="about.html">会社情報</a></p>
   </footer>
 
-  <!-- スクリプト -->
+  <!-- =========================
+       スクリプト
+  ========================= -->
   <script>
+    // PC/スマホ 切り替え処理
+    function toggleView() {
+      const viewportMeta = document.getElementById("viewport-meta");
+      const button = document.querySelector(".toggle-button");
+
+      // 現在の content 属性を確認
+      if (viewportMeta.getAttribute("content") === "width=1200, user-scalable=yes") {
+        // ▼ スマホ表示に切り替え
+        viewportMeta.setAttribute("content", "width=device-width, initial-scale=1.0");
+        button.innerText = "PC表示に切り替え";
+      } else {
+        // ▼ PC表示に戻す
+        viewportMeta.setAttribute("content", "width=1200, user-scalable=yes");
+        button.innerText = "スマホ表示に切り替え";
+      }
+    }
+
     // 画像上テキストのフェードイン
     document.addEventListener("DOMContentLoaded", () => {
       const imageSection = document.querySelector(".image-section");
@@ -430,6 +478,7 @@
         });
       });
 
+      // サービスカード以外をクリックしたら折りたたみ
       document.addEventListener('click', (e) => {
         if (!e.target.closest('.service-container')) {
           serviceCards.forEach(card => {
