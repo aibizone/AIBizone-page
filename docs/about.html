@@ -16,10 +16,6 @@
   >
 
   <style>
-    /* 横スクロール防止のため、すべての要素に box-sizing を適用 */
-    * {
-      box-sizing: border-box;
-    }
     /****************************************************************
      * 全体設定
      ****************************************************************/
@@ -64,7 +60,7 @@
     nav {
       display: flex;
       gap: 20px;
-      flex-wrap: wrap; /* 横幅が狭い場合は折り返す */
+      flex-wrap: nowrap; /* リンクを1行に収めるため折り返し防止 */
     }
     nav a {
       white-space: nowrap; /* 文字の折り返し防止 */
@@ -95,7 +91,6 @@
      * メイン（会社情報）
      ****************************************************************/
     main {
-      width: 100%;
       max-width: 800px;
       margin: 20px auto;
       padding: 20px;
@@ -196,7 +191,6 @@
     </div>
     <nav>
       <a href="index.html">トップページ</a>
-      <a href="https://aibizonepages.created.app/" target="_blank" rel="noopener">ギャラリー</a>
       <a href="https://ameblo.jp/aibizone/entrylist.html" target="_blank" rel="noopener">ブログ</a>
     </nav>
   </header>
